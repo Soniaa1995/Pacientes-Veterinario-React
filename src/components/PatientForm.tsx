@@ -1,8 +1,13 @@
 import { useForm } from "react-hook-form";
 import Error from "./Error";
 import type { DraftPatient } from "../types";
+import { usePatientStore } from "../store";
 
 export default function PatientForm() {
+  
+    const { addPatient } = usePatientStore()
+  
+
   //register es un metodo que permite registrar un input o select y aplicar las normas de validacion de ReactHook
   const {
     register,
@@ -11,7 +16,7 @@ export default function PatientForm() {
   } = useForm<DraftPatient>();
 
   const registerPatient = (data: DraftPatient) => {
-    console.log(data);
+    addPatient(data)
   };
 
   return (
@@ -59,9 +64,7 @@ export default function PatientForm() {
             })}
           />
 
-          {errors.caretaker && (
-            <Error>{errors.caretaker?.message}</Error>
-          )}
+          {errors.caretaker && <Error>{errors.caretaker?.message}</Error>}
         </div>
 
         <div className="mb-5">
