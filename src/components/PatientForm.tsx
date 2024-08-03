@@ -9,14 +9,12 @@ export default function PatientForm() {
   
 
   //register es un metodo que permite registrar un input o select y aplicar las normas de validacion de ReactHook
-  const {
-    register,
-    handleSubmit,
-    formState: { errors },
-  } = useForm<DraftPatient>();
+  const {register, handleSubmit, formState: { errors }, reset} = useForm<DraftPatient>();
 
   const registerPatient = (data: DraftPatient) => {
     addPatient(data)
+
+    reset() //para reiniciar el formulario de forma automatica com react-hook
   };
 
   return (
