@@ -3,6 +3,7 @@ import Error from "./Error";
 import type { DraftPatient } from "../types";
 import { usePatientStore } from "../store";
 import { useEffect } from "react";
+import { toast } from "react-toastify";
 
 export default function PatientForm() {
   
@@ -29,8 +30,10 @@ export default function PatientForm() {
 
     if(activeId){
         updatePatient(data)
+        toast.success('Paciente actualizado correctamente')
     } else  {
         addPatient(data)
+        toast.success('Paciente registrado correctamente')
     }
     reset() //para reiniciar el formulario de forma automatica com react-hook
   };
